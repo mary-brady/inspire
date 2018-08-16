@@ -14,6 +14,17 @@ function draw(todos) {
 	//WHAT IS MY PURPOSE?
 	//BUILD YOUR TODO TEMPLATE HERE
 	var template = ''
+	for (let i = 0; i < todos.length; i++) {
+		const todo = todos[i];
+		template += `
+		<div
+		<ul>
+		<li>${todo.message}</li>
+		<button onclick="app.controllers.todoController.removeTodo()">Delete</button>
+		</ul>
+		`
+	}
+	document.getElementById('todo').innerHTML = template
 	//DONT FORGET TO LOOP
 }
 
@@ -53,7 +64,7 @@ export default class TodoController {
 
 	removeTodo(todoId) {
 		// ask the service to run the remove todo with this id
-
+		todoService.removeTodo(todoId, getTodos)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
 

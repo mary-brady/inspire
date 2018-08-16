@@ -1,5 +1,6 @@
-
-
+import Todo from '../models/Todo.js'
+//do i have to push stuff into the array w/ in the api?
+// @ts-ignore
 const todoApi = axios.create({
 	baseURL: 'https://bcw-sandbox.herokuapp.com/api/YOURNAME/todos/',
 	timeout: 3000
@@ -18,16 +19,19 @@ export default class TodoService {
 		console.log("Getting the Todo List")
 		todoApi.get('')
 			.then((res) => { // <-- WHY IS THIS IMPORTANT????
-
+				let todos = res.data.map(rawTD => {
+					return new Todo(rawTD)
+				})
+				draw(todos)
 			})
 			.catch(logError)
 	}
 
-	addTodo(todo) {
+	addTodo(todo, draw) {
 		// WHAT IS THIS FOR???
 		todoApi.post('', todo)
 			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-
+				this.getTodos(draw)
 			})
 			.catch(logError)
 	}
@@ -46,9 +50,14 @@ export default class TodoService {
 			.catch(logError)
 	}
 
-	removeTodo() {
+	removeTodo(todoId, draw) {
+		todoApi.delete(todoId)
+			.then(res => {
+				this.getTodos(draw)
+			})
 		// Umm this one is on you to write.... The method is a DELETE
 
 	}
 
 }
+
