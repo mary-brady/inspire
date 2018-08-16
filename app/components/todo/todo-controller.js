@@ -1,7 +1,5 @@
 import TodoService from "./todo-service.js";
 
-
-
 var todoService = new TodoService
 
 // Use this getTodos function as your callback for all other edits
@@ -17,10 +15,11 @@ function draw(todos) {
 	for (let i = 0; i < todos.length; i++) {
 		const todo = todos[i];
 		template += `
-		<div
+		<div>
+		<h1>ToDo's!</h1>
 		<ul>
 		<li>${todo.message}</li>
-		<button onclick="app.controllers.todoController.removeTodo()">Delete</button>
+		<button onclick="app.controllers.todoController.removeTodo(todoId)">Delete</button>
 		</ul>
 		`
 	}
