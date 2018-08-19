@@ -8,19 +8,29 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="body" class="container-fluid bg">
+<body id="body">
+	<div id="bg">
+		<div class="container-fluid bg">
+			<div class="row">
+				<div class="col-md-12 offset-md-10">
+					<div id="weather">
 
-	<div id="weather">
-		Your Weather Template
-	</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 offset-md-4 align-items-center justify-content-center quote">
+					<div id="quote">
+						The Quote
+					</div>
+				</div>
+			</div>
 
-	<div id="quote">
-		The Quote
-	</div>
-
-	<div id="todo">
-		<form onsubmit="app.controllers.todoController.addTodoFromForm(e)">Add</form>
-		A Todo List
+			<div id="todo">
+				<form onsubmit="app.controllers.todoController.addTodoFromForm(e)">Add</form>
+				A Todo List
+			</div>
+		</div>
 	</div>
 
 
