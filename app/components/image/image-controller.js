@@ -4,11 +4,8 @@ var imageService = new ImageService()
 
 //Your ImageService is a global class what can you do here to instantiate it?
 function drawImage(image) {
-    let imageElem = document.getElementById('background')
-    let template = `
-        <img src=${image.url}>
-        `
-    imageElem.innerHTML = template
+    let bodyDiv = document.getElementById('body');
+    bodyDiv.style.backgroundImage = "url(" + image.url + ")";
 }
 
 export default class ImageController {
