@@ -18,10 +18,9 @@ export default class WeatherService {
 		weatherApi()
 			.then(function (res) {
 				localStorage.setItem('weather', JSON.stringify(res.data))
-				let fTemp = Math.floor((res.data.main.temp - 273) * 1.8 + 32)
+				res.data.main.temp = Math.floor((res.data.main.temp - 273) * 1.8 + 32)
 				let weather = new Weather(res.data)
 				draw(weather)
-				console.log(res.data.weather[0].icon)
 			})
 	}
 }
