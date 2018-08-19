@@ -1,6 +1,20 @@
 import QuoteService from "./quote-service.js";
+import Quote from "../models/Quote.js";
 
 let qs = new QuoteService
+
+function drawQuote(quote) {
+	let quoteElem = document.getElementById('quote')
+	let template = ''
+	template += `
+		<div>
+		<h1>Quote</h1>
+		<p>${quote.quote}</p>
+		<p>${quote.author}</p>
+		`
+	quoteElem.innerHTML = template
+}
+
 
 
 export default class QuoteController {
@@ -8,9 +22,9 @@ export default class QuoteController {
 		this.getQuote()
 	}
 
-	getQuote() {
+	getQuote(draw) {
 		qs.getQuote(function (quote) {
-			console.log(quote)
+			drawQuote(quote)
 		})
 	}
 }

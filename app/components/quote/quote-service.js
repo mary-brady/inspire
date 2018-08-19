@@ -13,11 +13,12 @@ const quoteApi = axios.create({
 });
 
 
+
 export default class QuoteService {
-	getQuote(callWhenDone) {
-		console.log('looking for some good quotes')
+	getQuote(draw) {
 		quoteApi().then((res) => {
-			callWhenDone(res.data)
+			let quotes = new Quote(res.data)
+			draw(quotes)
 		})
 	}
 }

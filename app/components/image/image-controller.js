@@ -6,7 +6,13 @@ var imageService = new ImageService()
 
 
 export default class ImageController {
-
-
+    constructor() {
+        this.getImage()
+    }
+    getImage() {
+        imageService.getImage(function (image) {
+            console.log(image)
+        })
+    }
 }
 
