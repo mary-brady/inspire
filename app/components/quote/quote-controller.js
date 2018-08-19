@@ -22,7 +22,7 @@ export default class QuoteController {
 		this.getQuote()
 	}
 
-	getQuote(draw) {
+	getQuote() {
 		qs.getQuote(function (quote) {
 			drawQuote(quote)
 		})

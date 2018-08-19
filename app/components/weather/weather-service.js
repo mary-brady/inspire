@@ -15,13 +15,13 @@ const weatherApi = axios.create({
 export default class WeatherService {
 
 	getWeather(draw) {
-		console.log('Calling the Weatherman')
 		weatherApi()
 			.then(function (res) {
 				localStorage.setItem('weather', JSON.stringify(res.data))
-				let fTemp = (res.data.main.temp - 273) * 1.8 + 32
-				console.log(res.data)
+				let fTemp = Math.floor((res.data.main.temp - 273) * 1.8 + 32)
+				let weather = new Weather(res.data)
+				draw(weather)
+				console.log(res.data.weather[0].icon)
 			})
-		// draw(weather);
 	}
 }
