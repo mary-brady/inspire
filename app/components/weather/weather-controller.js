@@ -11,7 +11,7 @@ export default class WeatherController {
 	}
 	getWeather() {
 		weatherService.getWeather(weather => {
-			console.log(weather);
+			console.log(weatherService.getWeather);
 			//What can you do with this weather object?
 		})
 	}
