@@ -18,7 +18,7 @@ function draw(todos) {
 		<div>
 		<h1>ToDo's!</h1>
 		<ul>
-		<li>${todo.message}</li>
+		<li>${todo.data}</li>
 		<button onclick="app.controllers.todoController.removeTodo(todoId)">Delete</button>
 		</ul>
 		`
@@ -30,6 +30,7 @@ function draw(todos) {
 
 export default class TodoController {
 	constructor() {
+		todoService.getTodos()
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
 	// You will need four methods
@@ -45,6 +46,7 @@ export default class TodoController {
 		// TAKE THE INFORMATION FORM THE FORM
 		var form = e.target
 		var todo = {
+
 			// DONT FORGET TO BUILD YOUR TODO OBJECT
 		}
 
