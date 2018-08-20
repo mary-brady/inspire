@@ -7,11 +7,10 @@ function drawWeather(weather) {
 	let weatherElem = document.getElementById('weather')
 	let template = ''
 	template += `
-		<div>
+		<div class="weather">
 		<h1>Weather</h1>
 		<p>${weather.name}</p>
-		<p>${weather.temp}</p>
-		<p>${weather.desc}</p>
+		<p>${weather.temp}°F, ${weather.desc}</p>
 		</div>
 		`
 	weatherElem.innerHTML = template
