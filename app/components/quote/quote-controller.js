@@ -8,8 +8,7 @@ function drawQuote(quote) {
 	let template = ''
 	template += `
 		<div>
-		<h1>Quote</h1>
-		<p>${quote.quote}</p>
+		<p><i>${quote.quote}<i></p>
 		<p>${quote.author}</p>
 		`
 	quoteElem.innerHTML = template
