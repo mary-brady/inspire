@@ -20,8 +20,7 @@ export default class TodoService {
 
 	getTodos(drawTodos) {
 		todoApi.get('')
-			.then((res) => { // <-- WHY IS THIS IMPORTANT????
-				// let todos = new Todo(res.data)
+			.then((res) => {
 				drawTodos(res.data)
 				todoList = []
 				res.data.data.forEach(function (element) {
@@ -45,8 +44,6 @@ export default class TodoService {
 	}
 
 	toggleTodoStatus(todoId, draw) {
-		// MAKE SURE WE THINK THIS ONE THROUGH
-		//STEP 1: Find the todo by its index **HINT** todoList
 		var todo = {}
 		for (let i = 0; i < todoList.length; i++) {
 			if (todoList[i]._id == todoId.toString()) {
@@ -57,7 +54,6 @@ export default class TodoService {
 		todoApi.put(todoId, todo)
 			.then(function (res) {
 			})
-			//DO YOU WANT TO DO ANYTHING WITH THIS?
 			.catch(logError)
 	}
 
@@ -66,9 +62,6 @@ export default class TodoService {
 			.then(res => {
 				this.getTodos(draw)
 			})
-		// Umm this one is on you to write.... The method is a DELETE
 	}
 
 }
-
-//put and delete need id url parameter i think

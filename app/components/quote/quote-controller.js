@@ -15,8 +15,6 @@ function drawQuote(quote) {
 	quoteElem.innerHTML = template
 }
 
-
-
 export default class QuoteController {
 	constructor() {
 		this.getQuote()
