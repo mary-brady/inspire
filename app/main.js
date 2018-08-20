@@ -8,7 +8,7 @@ class app {
   constructor() {
     this.controllers = {
       weatherController: new WeatherController(),
-      toDoController: new TodoController(),
+      todoController: new TodoController(),
       quoteService: new QuoteController(),
       imageService: new ImageController()
     }

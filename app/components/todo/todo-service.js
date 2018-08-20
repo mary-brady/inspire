@@ -18,20 +18,24 @@ export default class TodoService {
 
 	}
 
-	getTodos(draw) {
+	getTodos(drawTodos) {
 		todoApi.get('')
 			.then((res) => { // <-- WHY IS THIS IMPORTANT????
-				let todo = new Todo(res.data.data)
-				draw(todo)
+				let newTodo = new Todo(res.data)
+				drawTodos(newTodo)
 			})
 			.catch(logError)
 	}
 
 	addTodo(todo, draw) {
+		let newTodo = new Todo({
+			todo: todo.data
+		})
+		console.log(todo)
+		// todoList.push(newTodo)
 		// WHAT IS THIS FOR???
 		todoApi.post('', todo)
 			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-				let todo = new Todo(res.data.data)
 				draw(todo)
 			})
 			.catch(logError)

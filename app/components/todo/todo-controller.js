@@ -8,29 +8,30 @@ function getTodos() {
 	todoService.getTodos(draw)
 }
 
-function draw(todos) {
+function drawTodos(todos) {
 	//WHAT IS MY PURPOSE?
 	//BUILD YOUR TODO TEMPLATE HERE
-	var template = ''
-	for (let i = 0; i < todos.length; i++) {
-		const todo = todos[i];
-		template += `
-		<div>
-		<h1>ToDo's!</h1>
+	if (todos.data.length > 0) {
+		let template = ''
+		for (var key in todos.data) {
+			console.log(todos.data[key])
+			const todo = key;
+			template += `
 		<ul>
-		<li>${todo.data}</li>
+		<li>${todos.data[key].description}</li>
 		<button onclick="app.controllers.todoController.removeTodo(todoId)">Delete</button>
 		</ul>
 		`
+		}
+		document.getElementById('todo-list').innerHTML = template
 	}
-	document.getElementById('todo').innerHTML = template
 	//DONT FORGET TO LOOP
 }
 
 
 export default class TodoController {
 	constructor() {
-		todoService.getTodos()
+		this.getTodo()
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
 	// You will need four methods
@@ -44,16 +45,21 @@ export default class TodoController {
 	addTodoFromForm(e) {
 		e.preventDefault() // <-- hey this time its a freebie don't forget this
 		// TAKE THE INFORMATION FORM THE FORM
+		// todoService.addTodo(todo, drawTodos)
 		var form = e.target
 		var todo = {
-
+			description: form.todo.value,
+			completed: false,
+			_id: '',
+			user: "mary"
 			// DONT FORGET TO BUILD YOUR TODO OBJECT
 		}
-
+		console.log(todo)
 		//PASSES THE NEW TODO TO YOUR SERVICE
 		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
 		//YOU SHOULDN'T NEED TO CHANGE THIS
 		todoService.addTodo(todo, getTodos)
+		drawTodos(todo)
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
 	}
 
@@ -68,7 +74,11 @@ export default class TodoController {
 		todoService.removeTodo(todoId, getTodos)
 		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
-
+	getTodo() {
+		todoService.getTodos(function (todos) {
+			drawTodos(todos)
+		})
+	}
 
 
 }

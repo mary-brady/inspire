@@ -27,12 +27,14 @@
 			</div>
 
 			<div id="todo">
-				<form onsubmit="app.controllers.todoController.addTodoFromForm(e)">
+				<p>A Todo List</p>
+				<div id="todo-list">
+				</div>
+				<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
 					<label for="todo">Input: </label>
 					<input type="text" name="todo" placeholder="add your todo" required>
 					<button type="submit">Add Todo</button>
 				</form>
-				A Todo List
 			</div>
 		</div>
 	</div>
