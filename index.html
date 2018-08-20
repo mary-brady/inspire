@@ -9,10 +9,10 @@
 </head>
 
 <body id="body">
-	<div id="bg">
-		<div class="container-fluid bg">
+	<div class="container-fluid">
+		<div id="bg">
 			<div class="row">
-				<div class="col-md-10 offset-md-10 align-items-center justify-content-end">
+				<div class="col-md-10">
 					<div id="weather">
 					</div>
 				</div>
@@ -24,28 +24,24 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="ol-md-10 offset-md-10 align-items-center justify-content-end quote">
+				<div class="col-md-10">
 					<div id="todo">
 						<p>Todo List</p>
 						<div id="todo-list">
-							<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
-								<label for="todo">Input: </label>
-								<input type="text" name="todo" placeholder="add your todo" required>
-								<button type="submit">Add Todo</button>
-							</form>
 						</div>
+						<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
+							<label for="todo"></label>
+							<input type="text" name="todo" placeholder="add your todo" required>
+							<button type="submit">Add Todo</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 	<!--JS Libraries-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 	<!--Initialize App-->
-
 	<script type='module' src="app/main.js"></script>
 </body>
 
