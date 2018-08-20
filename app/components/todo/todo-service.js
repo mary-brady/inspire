@@ -21,36 +21,41 @@ export default class TodoService {
 	getTodos(drawTodos) {
 		todoApi.get('')
 			.then((res) => { // <-- WHY IS THIS IMPORTANT????
-				let newTodo = new Todo(res.data)
-				drawTodos(newTodo)
+				// let todos = new Todo(res.data)
+				drawTodos(res.data)
+				todoList = []
+				res.data.data.forEach(function (element) {
+					todoList.push(element)
+				})
 			})
 			.catch(logError)
 	}
 
-	addTodo(todo, draw) {
+	addTodo(todo, drawTodos) {
 		let newTodo = new Todo({
-			todo: todo.data
+			description: todo.description,
+			user: todo.user,
+			completed: false
 		})
-		console.log(todo)
-		// todoList.push(newTodo)
-		// WHAT IS THIS FOR???
-		todoApi.post('', todo)
-			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-				draw(todo)
+		todoApi.post('', newTodo)
+			.then(res => {
+				this.getTodos(drawTodos)
 			})
 			.catch(logError)
 	}
 
-	toggleTodoStatus(todoId) {
+	toggleTodoStatus(todoId, draw) {
 		// MAKE SURE WE THINK THIS ONE THROUGH
 		//STEP 1: Find the todo by its index **HINT** todoList
-
-		var todo = {} ///MODIFY THIS LINE
-
-		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
+		var todo = {}
+		for (let i = 0; i < todoList.length; i++) {
+			if (todoList[i]._id == todoId.toString()) {
+				todo = todoList[i]
+			}
+		}
+		todo.completed = !todo.completed
 		todoApi.put(todoId, todo)
-			.then(res => {
-				this.getTodos(todo)
+			.then(function (res) {
 			})
 			//DO YOU WANT TO DO ANYTHING WITH THIS?
 			.catch(logError)
